@@ -1,16 +1,17 @@
 #include "sort.h"
 
 /**
- * partition_h - array partition
- * @array: array to sort
- * @first: first position
- * @last: last position
- * @size: array size
- * Return: int pivot index
+ * hoare_partition - Hoare partition scheme
+ * @array: array to partition
+ * @size: size of the array
+ * @low: lower bound
+ * @high: higher bound
+ * Return: partition index
  */
-int partition_h(int *array, int first, int last, size_t size)
+int hoare_partition(int *array, size_t size, int low, int high)
 {
-	int pivot = array[last], i = first - 1, j = last + 1, aux;
+	int pivot = array[high];
+	int i = low - 1, j = high + 1;
 
 	while (1)
 	{
@@ -22,47 +23,47 @@ int partition_h(int *array, int first, int last, size_t size)
 			j--;
 		} while (array[j] > pivot);
 
-		if (j < i)
+		if (i >= j)
 			return (j);
-		if (array[i] > array[j])
-		{
-			aux = array[i];
-			array[i] = array[j];
-			array[j] = aux;
-			print_array(array, size);
-		}
+
+		array[i] ^= array[j];
+		array[j] ^= array[i];
+		array[i] ^= array[j];
+		print_array(array, size);
 	}
 }
 
 /**
- * qsh - sorts an array of integers recursively
+ * quick_sort_recursive - recursive function to implement Quick Sort
  * @array: array to sort
- * @first: first position
- * @last: last position
- * @size: array size
+ * @size: size of the array
+ * @low: lower bound
+ * @high: higher bound
  */
-void qsh(int *array, int first, int last, size_t size)
+void quick_sort_recursive(int *array, size_t size, int low, int high)
 {
-	int pivot;
+	int partition_index;
 
-	if (first < last)
+	if (low < high)
 	{
-		pivot = partition_h(array, first, last, size);
-		qsh(array, first, pivot, size);
-		qsh(array, pivot + 1, last, size);
+		partition_index = hoare_partition(array, size, low, high);
+
+		quick_sort_recursive(array, size, low, partition_index);
+		quick_sort_recursive(array, size, partition_index + 1, high);
 	}
 }
 
 /**
- * quick_sort_hoare - sorts an array of integers using the Quick
- * sort hoare algorithm  in ascending order
+ * quick_sort_hoare - sorts an array of integers in ascending order
+ * using the Quick sort algorithm (Hoare partition scheme)
  * @array: array to sort
- * @size: array size
+ * @size: size of the array
  */
 void quick_sort_hoare(int *array, size_t size)
 {
-	if (!array || size < 2)
+	if (array == NULL || size < 2)
 		return;
 
-	qsh(array, 0, size - 1, size);
+	quick_sort_recursive(array, size, 0, size - 1);
 }
+

@@ -1,3 +1,4 @@
-O(n)
-O(n^2)
-O(n^2)
+O(1)   // Best case: The list is already sorted.
+O(n^2) // Average case: In the worst case, it requires scanning through the entire list for each pass.
+O(n^2) // Worst case: The list is in reverse order, and each element needs to be moved to the beginning.
+

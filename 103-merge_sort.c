@@ -3,11 +3,11 @@
 #include <stdio.h>
 
 /**
- * print_left_right - print left and right partitions
- * @array: array
- * @size: size of second array
- * @first: initial position
- * @mid: middle position
+ * print_left_right - Print left and right partitions.
+ * @array: Array.
+ * @size: Size of second array.
+ * @first: Initial position.
+ * @mid: Middle position.
  */
 void print_left_right(int *array, int size, int first, int mid)
 {
@@ -38,13 +38,12 @@ void print_left_right(int *array, int size, int first, int mid)
 }
 
 /**
- * merge - merge the values in the position of array
- * @array: first array
- * @size: size of second array
- * @cpy: copy of array
- * @first: initial position
- * @mid: middle position
- * first one of the second array
+ * merge - Merge the values in the position of array.
+ * @array: First array.
+ * @size: Size of second array.
+ * @first: Initial position.
+ * @mid: Middle position.
+ * First one of the second array.
  */
 void merge(int *array, int size, int first, int mid, int *cpy)
 {
@@ -76,12 +75,13 @@ void merge(int *array, int size, int first, int mid, int *cpy)
 		k++;
 	}
 }
+
 /**
- * mergeSort - array separator
- * @cpy: copy of array
- * @first: initial position
- * @size: size of the original  array
- * @array: the original array
+ * mergeSort - Array separator.
+ * @cpy: Copy of array.
+ * @first: Initial position.
+ * @size: Size of the original array.
+ * @array: The original array.
  */
 void mergeSort(int *cpy, int first, int size, int *array)
 {
@@ -97,11 +97,12 @@ void mergeSort(int *cpy, int first, int size, int *array)
 
 	merge(cpy, size, first, mid, array);
 }
+
 /**
- * copy_array - copy array of int
- * @arr: array src
- * @cpy: array dest
- * @size : array size
+ * copy_array - Copy array of int.
+ * @arr: Array source.
+ * @cpy: Array destination.
+ * @size: Array size.
  */
 void copy_array(int *arr, int *cpy, int size)
 {
@@ -112,9 +113,9 @@ void copy_array(int *arr, int *cpy, int size)
 }
 
 /**
- * merge_sort - create partition and copy
- * @array: array
- * @size : array size
+ * merge_sort - Create partition and copy.
+ * @array: Array.
+ * @size: Array size.
  */
 void merge_sort(int *array, size_t size)
 {
@@ -130,3 +131,4 @@ void merge_sort(int *array, size_t size)
 	mergeSort(cpy, 0, size, array);
 	free(cpy);
 }
+
